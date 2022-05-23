@@ -74,7 +74,7 @@ getDocs(bookRef)
 // });
 
 // Get Real-time collection data
-onSnapshot(bookRef, (snapshot) => {
+onSnapshot(query(bookRef, orderBy("createdAt", "desc")), (snapshot) => {
   let books = [];
   snapshot.docs.forEach((doc) => {
     books.push({ ...doc.data(), id: doc.id });
