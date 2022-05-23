@@ -14,24 +14,44 @@
       href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.15.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
   </head>
-  <body>
+  <body class="bg-stone-200">
     <nav class="w-full bg-slate-700 text-white py-[2rem] px-4">
       <div
         class="w-full md:max-w-[85vw] mx-auto flex items-center justify-between"
       >
         <h1 class="text-2xl font-kick md:text-[2rem]">Firebase V9</h1>
-        <button
-          class="bg-white rounded-md focus:ring-[.2rem] ring-sky-400 p-1 text-slate-800 text-2xl"
-        >
-          <i class="bx bx-menu"></i>
-        </button>
+
+        <div x-data="{ showDropdown: false }">
+          <button
+            @click="showDropdown = !showDropdown"
+            class="bg-white relative rounded-md focus:ring-[.2rem] ring-sky-400 p-1 text-slate-800 text-2xl"
+          >
+            <i class="bx bx-menu"></i>
+          </button>
+
+          <div x-show="showDropdown" class="pt-4 w-[8rem] absolute top-[4em] right-[5vw]">
+            <ul class="text-white absolute overflow-hidden bg-black rounded-md">
+              <li class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4">Dashboard</li>
+              <li class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4">Settings</li>
+              <li class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4">Log Out</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
-    <main class="min-h-[90vh] prose w-full bg-stone-200 pt-[1rem]">
+    <main
+      class="min-h-[90vh] grid grid-cols-1 max-w-[900px] mx-auto md:grid-cols-2 gap-2 prose w-full pt-[1rem]"
+    >
       <div
-        class="max-w-sm output-section shadow-md px-4 py-4 mx-auto my-2 rounded-md bg-white"
+        class="output-section w-full shadow-md px-4 py-4 mx-auto my-2 rounded-md bg-white"
       >
         <h2 class="font-black font-kick text-2xl mb-2">Book List</h2>
         <ul class="book-list list-disc flex flex-col gap-1 px-4 py-2"></ul>
@@ -81,10 +101,25 @@
 
           <button
             class="w-fit rounded-full bg-slate-900 transition text-white px-6 py-3 mx-auto flex items-center"
-          >Update Book</button>
+          >
+            Update Book
+          </button>
         </form>
       </div>
     </main>
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+      <div>
+        <p>
+          Copyright © 2022 - All right reserved by
+          <a
+            href="https://madflows.dev"
+            target="_blank"
+            class="underline decoration-wavy font-bold decoration-red-700"
+            >Madflows</a
+          >
+        </p>
+      </div>
+    </footer>
 
     <script src="./bundle.js"></script>
     <script

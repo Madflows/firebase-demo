@@ -81,7 +81,7 @@ onSnapshot(bookRef, (snapshot) => {
   bookList.innerHTML = books
     .map(
       (book) => `<li>
-    <p class="font-bold">${book.title}</p> By: <span class="text-sm">${book.author}</span></li>`
+    <p class="font-bold">${book.title}</p> By: <span class="text-sm">${book.author}</span> <p>ID: <span class="text-sm select-all">${book.id}</span></p></li>`
     )
     .join("");
 });
@@ -196,9 +196,5 @@ updateForm.addEventListener("submit", (e) => {
       },
       onClick: function () {}, // Callback after click
     }).showToast();
-  })
-
-  
-
-
+  });
 });
