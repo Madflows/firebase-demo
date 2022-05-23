@@ -19,11 +19,13 @@
     font-family: 'Kick the Font', sans-serif;
 }
 
-input[type=text]{
+
+input[type=text], input[type=email], input[type=password]{
     outline: none;
     border-bottom: 2px solid #000;
     transition: .4s;
     padding: 10px;
+    @apply text-slate-800;
 }
 
 input[type=text]:invalid{

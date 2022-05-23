@@ -37,11 +37,26 @@
             <i class="bx bx-menu"></i>
           </button>
 
-          <div x-show="showDropdown" class="pt-4 w-[8rem] absolute top-[4em] right-[5vw]">
+          <div
+            x-show="showDropdown"
+            class="pt-4 w-[8rem] absolute top-[4em] right-[5vw]"
+          >
             <ul class="text-white absolute overflow-hidden bg-black rounded-md">
-              <li class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4">Dashboard</li>
-              <li class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4">Settings</li>
-              <li class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4">Log Out</li>
+              <li
+                class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4"
+              >
+                Dashboard
+              </li>
+              <li
+                class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4"
+              >
+                Settings
+              </li>
+              <li
+                class="cursor-pointer hover:bg-sky-200 hover:text-stone-700 transition py-3 px-4"
+              >
+                Log Out
+              </li>
             </ul>
           </div>
         </div>
@@ -107,6 +122,17 @@
         </form>
       </div>
     </main>
+    <div class="auth-container mx-auto my-[2rem] bg-white rounded-md shadow-md py-3 px-4 container">
+      <h2 class="font-bold text-2xl mb-[1em]">Firebase Auth</h2>
+
+      <form class="signup flex flex-col gap-1 px-4 py-5 rounded-md bg-slate-500 w-full max-w-xs ">
+        <label class="text-white" for="email">Email Address:</label>
+        <input type="email" name="email" />
+        <label class="text-white" for="password">Password:</label>
+        <input type="password" name="password" />
+        <button class="btn btn-pill btn-warning mt-4">Sign Up</button>
+      </form>
+    </div>
     <footer class="footer footer-center p-4 bg-base-300 text-base-content">
       <div>
         <p>

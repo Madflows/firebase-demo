@@ -18,6 +18,8 @@ import {
   updateDoc, // NOTE: updateDoc is used to update a document in the database.
 } from "firebase/firestore";
 
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 // GLOBAL VARIABLES
 const bookList = document.querySelector(".book-list");
 // Firebase config object
@@ -36,6 +38,7 @@ initializeApp(firebaseConfig);
 // init firestore service
 
 const db = getFirestore();
+const auth = getAuth();
 
 // collection ref = [Book ref in this scenario]
 const bookRef = collection(db, "books");
@@ -197,4 +200,30 @@ updateForm.addEventListener("submit", (e) => {
       onClick: function () {}, // Callback after click
     }).showToast();
   });
+});
+
+// FIREBASE AUTH
+
+const signUpForm = document.querySelector(".signup");
+
+
+// Signing users up
+signUpForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const email = signUpForm.email.value;
+  const password = signUpForm.password.value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+      console.log(`User created: ${cred.user}`)
+      signUpForm.reset();
+      alert("Account Created, You can now login with the credentials")
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+
+  // Voila! you have a perfect authentication setup for your web app
+
 });
