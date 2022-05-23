@@ -1,0 +1,21 @@
+{
+  "name": "firebase-course",
+  "version": "1.0.0",
+  "description": "innit!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "firebase": "^9.8.1",
+    "notyf": "^3.10.0"
+  }
+}
