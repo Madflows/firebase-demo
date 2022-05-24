@@ -2,8 +2,12 @@
   "name": "firebase-course",
   "version": "1.0.0",
   "description": "innit!",
+  "homepage": "https://madflows.github.io/firebase-demo",
+  "private": "true",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack"
   },
@@ -11,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
   },

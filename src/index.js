@@ -18,12 +18,13 @@ import {
   updateDoc, // NOTE: updateDoc is used to update a document in the database.
 } from "firebase/firestore";
 
-import { 
-  getAuth, 
+import {
+  getAuth,
   createUserWithEmailAndPassword,
   signOut,
-  signInWithEmailAndPassword
- } from "firebase/auth";
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 // GLOBAL VARIABLES
 const bookList = document.querySelector(".book-list");
@@ -211,7 +212,6 @@ updateForm.addEventListener("submit", (e) => {
 
 const signUpForm = document.querySelector(".signup");
 
-
 // Signing users up
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -221,47 +221,56 @@ signUpForm.addEventListener("submit", (e) => {
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-      console.log(`User created: ${cred.user.email}`)
+      console.log(`User created: ${cred.user.email}`);
       signUpForm.reset();
-      alert("Account Created, You can now login with the credentials")
+      alert("Account Created, You can now login with the credentials");
     })
     .catch((err) => {
       console.log(err.message);
     });
 
   // Voila! you have a perfect authentication setup for your web app
-
 });
-
 
 // Login in and Logging out
 
-const loginForm = document.querySelector('.login')
-loginForm.addEventListener("submit",(e) => {
+const loginForm = document.querySelector(".login");
+loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const email = loginForm.email.value
-  const password = loginForm.password.value
+  const email = loginForm.email.value;
+  const password = loginForm.password.value;
 
   signInWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-      console.log(`${cred.user.email} successfully signed in`)
-      loginForm.reset()
+      // console.log(`${cred.user.email} successfully signed in`);
+      loginForm.reset();
     })
     .catch((err) => {
-      console.log(err.message)
-    })
+      console.log(err.message);
+    });
+});
 
-
-})
-
-const logoutBtn = document.querySelector('.logout')
+const logoutBtn = document.querySelector(".logout");
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
     .then(() => {
-      console.log("The user is signed out")
+      // console.log("The user is signed out");
     })
     .catch((err) => {
-      console.log(err.message)
-    })
-})
+      console.log(err.message);
+    });
+});
+
+// Monitoring Real-time authentication changes
+onAuthStateChanged(auth, (user) => {
+  user
+    ? (console.log(`${user.email} logged in!`),
+      (loginForm.style.display = "none"),
+      (signUpForm.style.display = "none"),
+      (logoutBtn.style.display = "flex"))
+    : (console.log(`We hope to see you again`),
+      (loginForm.style.display = "flex"),
+      (signUpForm.style.display = "flex"),
+      (logoutBtn.style.display = "none"));
+});
