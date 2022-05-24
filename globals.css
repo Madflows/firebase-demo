@@ -1,0 +1,40 @@
+@import url('https://fonts.cdnfonts.com/css/sofia-pro');
+@import url('https://fonts.cdnfonts.com/css/merton');
+@import url('https://fonts.cdnfonts.com/css/kick-the-font');
+@import url('https://fonts.cdnfonts.com/css/sage-sans');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sage Sans', sans-serif;
+    /* font-family: 'Merton', sans-serif; */
+}
+
+.output-section{
+    transition: .4s;
+}
+
+.font-kick{
+    font-family: 'Kick the Font', sans-serif;
+}
+
+
+input[type=text], input[type=email], input[type=password]{
+    outline: none;
+    border-bottom: 2px solid #000;
+    transition: .4s;
+    padding: 10px;
+    @apply text-slate-800;
+}
+
+input[type=text]:invalid{
+    color: #e11d48;
+    border-bottom: 4px solid #e11d48;
+}
+
+input[type=text]:not(:placeholder-shown){
+    outline: none;
+    border: none;
+    border-bottom: 4px solid #059669;
+}
