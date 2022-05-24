@@ -18,7 +18,12 @@ import {
   updateDoc, // NOTE: updateDoc is used to update a document in the database.
 } from "firebase/firestore";
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithEmailAndPassword
+ } from "firebase/auth";
 
 // GLOBAL VARIABLES
 const bookList = document.querySelector(".book-list");
@@ -216,7 +221,7 @@ signUpForm.addEventListener("submit", (e) => {
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-      console.log(`User created: ${cred.user}`)
+      console.log(`User created: ${cred.user.email}`)
       signUpForm.reset();
       alert("Account Created, You can now login with the credentials")
     })
@@ -227,3 +232,36 @@ signUpForm.addEventListener("submit", (e) => {
   // Voila! you have a perfect authentication setup for your web app
 
 });
+
+
+// Login in and Logging out
+
+const loginForm = document.querySelector('.login')
+loginForm.addEventListener("submit",(e) => {
+  e.preventDefault();
+
+  const email = loginForm.email.value
+  const password = loginForm.password.value
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+      console.log(`${cred.user.email} successfully signed in`)
+      loginForm.reset()
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+
+
+})
+
+const logoutBtn = document.querySelector('.logout')
+logoutBtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      console.log("The user is signed out")
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+})
