@@ -80,7 +80,7 @@ getDocs(bookRef)
 // });
 
 // Get Real-time collection data
-onSnapshot(query(bookRef, orderBy("createdAt", "desc")), (snapshot) => {
+const unsubBook = onSnapshot(query(bookRef, orderBy("createdAt", "desc")), (snapshot) => {
   let books = [];
   snapshot.docs.forEach((doc) => {
     books.push({ ...doc.data(), id: doc.id });
@@ -274,3 +274,12 @@ onAuthStateChanged(auth, (user) => {
       (signUpForm.style.display = "flex"),
       (logoutBtn.style.display = "none"));
 });
+
+
+// Unsubscribing from changes (auth & db)
+
+const unsubButton = document.querySelector('.unsub')
+unsubButton.addEventListener('click', () => {
+  unsubBook();
+  console.log('unsubscribed')
+})
